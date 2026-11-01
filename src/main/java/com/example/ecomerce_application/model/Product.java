@@ -1,7 +1,9 @@
 package com.example.ecomerce_application.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,10 +23,17 @@ public class Product {
     private String name;
     private String description;
     private String brand;
-    private Date date;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private Date releaseDate;
     private BigDecimal price;
-    private int quantity;
+    private int stockQuantity;
     private String category;
-    private boolean available;
+    private boolean productAvailable;
+
+    private String ImageName;
+    private String ImageType;
+    @Lob // larg object
+    private byte[] imageData; // store in the DB
 
 }
